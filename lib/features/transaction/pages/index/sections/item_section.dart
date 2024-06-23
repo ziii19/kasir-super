@@ -48,7 +48,7 @@ class _ItemSection extends StatelessWidget {
             ),
             Dimens.dp8.height,
             RegularText.semiBold(
-              data.discount.toIDR(),
+              data.total.toIDR(),
               style: TextStyle(color: context.theme.primaryColor),
             ),
           ],

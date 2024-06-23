@@ -20,7 +20,7 @@ class _ActionSection extends StatelessWidget {
               Dimens.dp16.width,
               Expanded(
                 child: OutlinedButton(
-                    onPressed: () {}, child: const Text('Cetak Struk')),
+                    onPressed: () {}, child: const Text('Kirim Struk')),
               ),
             ],
           ),

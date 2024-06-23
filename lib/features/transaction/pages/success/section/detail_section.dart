@@ -20,7 +20,8 @@ class _DetailSection extends StatelessWidget {
               Dimens.dp8.height,
               _buildTile('Pajak', 'IDR 0'),
               Dimens.dp8.height,
-              _buildTile('Diskon', '- ${state.item?.discount.toIDR()}'),
+              _buildTile('Diskon', '- ${state.item?.discount.toIDR()}',
+                  isDisc: true),
               const Divider(),
               _buildTile(
                 'Total Tagihan',
@@ -47,8 +48,13 @@ class _DetailSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTile(String title, String value,
-      {bool isBold = false, Color? color}) {
+  Widget _buildTile(
+    String title,
+    String value, {
+    bool isBold = false,
+    Color? color,
+    bool isDisc = false,
+  }) {
     return Row(
       children: [
         if (isBold)
@@ -65,7 +71,8 @@ class _DetailSection extends StatelessWidget {
           child: RegularText.semiBold(
             value,
             textAlign: TextAlign.end,
-            style: TextStyle(fontSize: Dimens.dp12, color: color),
+            style: TextStyle(
+                fontSize: Dimens.dp12, color: isDisc ? AppColors.green : color),
           ),
         ),
       ],
