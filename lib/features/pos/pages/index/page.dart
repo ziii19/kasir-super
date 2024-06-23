@@ -60,7 +60,7 @@ class _POSPageState extends State<POSPage> {
             child: BlocBuilder<ProductBloc, ProductState>(
               builder: (context, state) {
                 if (state.status == Status.success && state.product.isEmpty) {
-                  return EmptyTemplate();
+                  return const EmptyTemplate();
                 }
                 return ListView.separated(
                     padding: const EdgeInsets.all(Dimens.dp16),

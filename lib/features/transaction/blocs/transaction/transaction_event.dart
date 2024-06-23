@@ -18,9 +18,10 @@ class GetTransactionEvent extends TransactionEvent {
 
 class CreateTransactionEvent extends TransactionEvent {
   final TransactionModel transaction;
+  final TypeEnum? type;
 
-  const CreateTransactionEvent({required this.transaction});
+  const CreateTransactionEvent(this.transaction, {this.type});
 
   @override
-  List<Object?> get props => [transaction];
+  List<Object?> get props => [transaction, type];
 }

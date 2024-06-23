@@ -20,8 +20,7 @@ class _ActionSection extends StatelessWidget {
                       onPressed: () {
                         context.read<TransactionBloc>().add(
                             CreateTransactionEvent(
-                                transaction:
-                                    state.transaction(TypeEnum.draft)));
+                                state.transaction(TypeEnum.draft)));
                       },
                       child: const Text('Simpan Pesanan'),
                     ),

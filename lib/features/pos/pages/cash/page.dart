@@ -25,42 +25,45 @@ class _CashPageState extends State<CashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pembayaran Tunai')),
-      body: ListView(
-        children: [
-          const _PriceSection(),
-          const Divider(
-            thickness: 8,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(Dimens.dp16),
-            child: Column(
-              children: [
-                RegularTextInput(
-                  controller: controller,
-                  hintText: 'Rp. 0',
-                  label: 'Masukan Nominal',
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  keyboardType: TextInputType.number,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                )
-              ],
+      body: Scaffold(
+        appBar: AppBar(title: const Text('Pembayaran Tunai')),
+        body: ListView(
+          children: [
+            const _PriceSection(),
+            const Divider(
+              thickness: 8,
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(Dimens.dp16),
-            child: ElevatedButton(
-              onPressed: state.isValidCash(controller.text) ? confirmBtn : null,
-              child: const Text('Tagih'),
+            Padding(
+              padding: const EdgeInsets.all(Dimens.dp16),
+              child: Column(
+                children: [
+                  RegularTextInput(
+                    controller: controller,
+                    hintText: 'Rp. 0',
+                    label: 'Masukan Nominal',
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                  )
+                ],
+              ),
             ),
-          );
-        },
+          ],
+        ),
+        bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(Dimens.dp16),
+              child: ElevatedButton(
+                onPressed:
+                    state.isValidCash(controller.text) ? confirmBtn : null,
+                child: const Text('Tagih'),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

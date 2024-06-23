@@ -12,11 +12,12 @@ class _ConfirmSection extends StatelessWidget {
     return ContentSheet(
         child: BlocListener<TransactionBloc, TransactionState>(
       listener: (context, state) {
-        if (state.status == Status.apply) {
+        if (state.status == Status.success) {
           Navigator.pushNamedAndRemoveUntil(
             context,
             SuccessTransactionPage.routeName,
             (route) => false,
+            arguments: state.item?.referenceId,
           );
         }
       },
@@ -27,8 +28,10 @@ class _ConfirmSection extends StatelessWidget {
             children: [
               RegularText.semiBold('Selesaikan Pembayaran'),
               Dimens.dp16.height,
-              RegularText('Anda akan menyelesaikan pembayaran dengan nilai '
-                  'transaksi sebesar ${state.getEstimate.toIDR()}.'),
+              RegularText(
+                'Anda akan menyelesaikan pembayaran dengan nilai '
+                'transaksi sebesar ${(state.getEstimate - state.afterDiscount).toIDR()}.',
+              ),
               Dimens.dp24.height,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +49,7 @@ class _ConfirmSection extends StatelessWidget {
                     style: TextStyle(color: AppColors.red[500]),
                   ),
                   RegularText.semiBold(
-                    (nominal - state.discount).toIDR(),
+                    (nominal - state.afterDiscount).toIDR(),
                     style: TextStyle(color: AppColors.red[500]),
                   ),
                 ],
@@ -59,11 +62,12 @@ class _ConfirmSection extends StatelessWidget {
                       context
                           .read<TransactionBloc>()
                           .add(CreateTransactionEvent(
-                              transaction: state.transaction(
-                            TypeEnum.paid,
-                            payAmount: nominal,
-                            paymentType: PaymentType.cash,
-                          )));
+                              type: TypeEnum.paid,
+                              state.transaction(
+                                TypeEnum.paid,
+                                payAmount: nominal,
+                                paymentType: PaymentType.cash,
+                              )));
                     },
                     child: const Text('Konfirmasi'),
                   );

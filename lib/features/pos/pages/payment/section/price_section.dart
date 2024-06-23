@@ -15,7 +15,7 @@ class _PriceSection extends StatelessWidget {
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
               return HeadingText(
-                state.discount.toIDR(),
+                (state.afterDiscount).toIDR(),
                 style: TextStyle(
                   color: context.theme.primaryColor,
                   fontSize: Dimens.dp24,

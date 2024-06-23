@@ -11,9 +11,9 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartState.inital()) {
+  CartBloc() : super(CartState.initial()) {
     on<InitialCartEvent>((event, emit) {
-      emit(CartState.inital());
+      emit(CartState.initial());
     });
 
     on<IncrementCartEvent>((event, emit) {

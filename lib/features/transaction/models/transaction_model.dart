@@ -58,7 +58,7 @@ class TransactionModel extends Equatable {
   }
 
   num get cashback {
-    return payAmount - amount - discount;
+    return payAmount - total;
   }
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) =>

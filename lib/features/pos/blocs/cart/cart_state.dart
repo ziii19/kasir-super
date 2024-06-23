@@ -11,7 +11,7 @@ class CartState extends Equatable {
   final DiscountType? type;
   final num disc;
 
-  factory CartState.inital() {
+  factory CartState.initial() {
     return const CartState();
   }
 
@@ -26,7 +26,7 @@ class CartState extends Equatable {
   }
 
   bool isValidCash(String nominal) {
-    return (num.tryParse(nominal) ?? 0) >= discount;
+    return (num.tryParse(nominal) ?? 0) >= afterDiscount;
   }
 
   int get getQty {
@@ -49,7 +49,7 @@ class CartState extends Equatable {
     return price;
   }
 
-  num get discount {
+  num get afterDiscount {
     if (type == DiscountType.percentage) {
       return getEstimate - (getEstimate * disc / 100);
     } else {
@@ -57,8 +57,12 @@ class CartState extends Equatable {
     }
   }
 
-  num get persenDisc {
-    return getEstimate * disc / 100;
+  num get discount {
+    if (type == DiscountType.percentage) {
+      return getEstimate * disc / 100;
+    } else {
+      return disc;
+    }
   }
 
   TransactionModel transaction(

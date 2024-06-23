@@ -17,17 +17,12 @@ class _DetailSection extends StatelessWidget {
               _buildItem(
                   title: 'Jumlah Pesanan', value: '${state.carts.length}'),
               _buildItem(title: 'Subtotal', value: state.getEstimate.toIDR()),
-              _buildItem(title: 'Pajak', value: '0'),
-              _buildItem(
-                title: 'Diskon',
-                value: state.type == DiscountType.nominal
-                    ? state.disc.toIDR()
-                    : state.persenDisc.toIDR(),
-              ),
+              _buildItem(title: 'Pajak', value: 'Rp 0'),
+              _buildItem(title: 'Diskon', value: state.discount.toIDR()),
               const Divider(),
               _buildItem(
-                title: 'Estumasi Tagihan',
-                value: state.discount.toIDR(),
+                title: 'Estimasi Tagihan',
+                value: state.afterDiscount.toIDR(),
                 isBold: true,
               ),
             ],
