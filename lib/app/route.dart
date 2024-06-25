@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kasir_super/features/pos/pages/pages.dart';
 import 'package:kasir_super/features/pos/pos.dart';
 import 'package:kasir_super/features/product/models/model.dart';
+import 'package:kasir_super/features/transaction/pages/detail/page.dart';
 
 import '../core/components/components.dart';
 import '../features/home/home.dart';
@@ -55,6 +57,16 @@ Route<dynamic> router(settings) {
     case SuccessTransactionPage.routeName:
       return CupertinoPageRoute(builder: (context) {
         return SuccessTransactionPage(
+          referenceId: settings.arguments as String,
+        );
+      });
+    case POSQrPage.routeName:
+      return CupertinoPageRoute(builder: (context) {
+        return const POSQrPage();
+      });
+    case TransactionDetailPage.routeName:
+      return CupertinoPageRoute(builder: (context) {
+        return TransactionDetailPage(
           referenceId: settings.arguments as String,
         );
       });

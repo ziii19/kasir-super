@@ -9,10 +9,21 @@ class TransactionServices {
     try {
       final db = await SQLiteDatabase.database;
 
-      final results = await db.rawQuery('''
-    SELECT * FROM transactions INNER JOIN items ON transactions.id = items.transactionId WHERE transactions.type LIKE ?
+      List<Map<String, Object?>> results = [];
+
+      if (type != null) {
+        results = await db.rawQuery('''
+    SELECT * FROM transactions INNER JOIN items ON transactions.id = items.transactionId WHERE transactions.type = ?
     ORDER BY transactions.createdAt DESC
-    ''', ["%${type?.name ?? ''}%"]);
+    ''', [type.name]);
+      } else {
+        results = await db.rawQuery(
+          '''
+    SELECT * FROM transactions INNER JOIN items ON transactions.id = items.transactionId 
+    ORDER BY transactions.createdAt DESC
+    ''',
+        );
+      }
 
       List<TransactionModel> transactions = [];
 

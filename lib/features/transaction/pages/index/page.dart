@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasir_super/core/extensions/date_extension.dart';
 import 'package:kasir_super/features/transaction/blocs/transaction/transaction_bloc.dart';
 import 'package:kasir_super/features/transaction/models/models.dart';
+import 'package:kasir_super/features/transaction/pages/detail/page.dart';
 import '../../../../core/core.dart';
 
 part 'sections/filter_section.dart';
