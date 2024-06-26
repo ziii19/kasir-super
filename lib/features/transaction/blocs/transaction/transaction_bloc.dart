@@ -26,8 +26,9 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
         if (event.referenceId != null) {
           final item = await TransactionServices.update(state.item!.copyQr(
-            payAmountX: event.transaction.payAmount,
-          ));
+              payAmountX: event.transaction.payAmount,
+              typeX: event.type,
+              paymentTypeX: event.transaction.paymentType));
 
           emit(state.copyWith(status: Status.success, item: item));
         } else {
@@ -65,7 +66,6 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           ));
 
           emit(state.copyWith(status: Status.process, item: item));
-
         } else {
           final service = await XenditService.createQr(
               referenceId: event.transaction.referenceId,

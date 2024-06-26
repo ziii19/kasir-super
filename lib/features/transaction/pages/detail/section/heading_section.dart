@@ -12,7 +12,7 @@ class _HeadingSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RegularText.semiBold(item.referenceId),
+        RegularText.semiBold('# ${item.referenceId}'),
         Dimens.dp8.height,
         Container(
           padding: const EdgeInsets.symmetric(

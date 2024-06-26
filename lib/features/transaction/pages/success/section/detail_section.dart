@@ -16,7 +16,7 @@ class _DetailSection extends StatelessWidget {
               const Divider(),
               _buildTile('Jumlah pesanan', '${state.item?.items.length}'),
               Dimens.dp8.height,
-              _buildTile('Subtotal', '${state.item?.discount.toIDR()}'),
+              _buildTile('Subtotal', '${state.item?.amount.toIDR()}'),
               Dimens.dp8.height,
               _buildTile('Pajak', 'IDR 0'),
               Dimens.dp8.height,
