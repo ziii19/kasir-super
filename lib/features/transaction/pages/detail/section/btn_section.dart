@@ -38,7 +38,13 @@ class _BtnSection extends StatelessWidget {
             ],
             OutlinedButton(onPressed: () {}, child: const Text('Kirim Struk')),
             Dimens.dp24.height,
-            ElevatedButton(onPressed: () {}, child: const Text('Cetak Struk')),
+            ElevatedButton(
+                onPressed: () {
+                  context
+                      .read<PrinterBloc>()
+                      .add(TransactionPrinterEvent(item));
+                },
+                child: const Text('Cetak Struk')),
           ],
         ),
       ),

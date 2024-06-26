@@ -1,1 +1,1 @@
-export 'tes_template.dart';
+export 'struck_template.dart';

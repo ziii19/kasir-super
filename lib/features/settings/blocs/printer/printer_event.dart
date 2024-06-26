@@ -7,6 +7,15 @@ class PrinterEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class TransactionPrinterEvent extends PrinterEvent {
+  final TransactionModel transaction;
+
+  const TransactionPrinterEvent(this.transaction);
+
+  @override
+  List<Object> get props => [transaction];
+}
+
 class GetPrinterEvent extends PrinterEvent {}
 
 class TestPrinterEvent extends PrinterEvent {

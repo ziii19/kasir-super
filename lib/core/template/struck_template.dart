@@ -2,10 +2,12 @@ import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
 import 'package:kasir_super/core/core.dart';
 import 'package:kasir_super/features/settings/services/services.dart';
 
+import '../../features/transaction/models/models.dart';
+
 class TicketTemplate {
   TicketTemplate._();
 
-  static Future<List<int>> ticket({transaction}) async {
+  static Future<List<int>> ticket({TransactionModel? transaction}) async {
     final user = await ProfileServices.getProfile();
     final printer = await StruckServices.get();
 
