@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kasir_super/features/transaction/models/models.dart';
 import 'package:kasir_super/features/transaction/transaction.dart';
 
 import '../../../core/core.dart';
@@ -82,19 +83,24 @@ class TransactionModel extends Equatable {
     );
   }
 
-  TransactionModel copyQr({String? qrIdX, String? qrStringX, TypeEnum? typeX}) {
+  TransactionModel copyQr(
+      {String? qrIdX,
+      String? qrStringX,
+      TypeEnum? typeX,
+      num? payAmountX,
+      PaymentType? paymentTypeX}) {
     return TransactionModel(
       discount: discount,
       id: id,
       items: items,
-      payAmount: payAmount,
+      payAmount: payAmountX ?? payAmount,
       qrId: qrIdX ?? qrId,
       qrString: qrStringX ?? qrString,
       referenceId: referenceId,
       type: typeX ?? type,
       amount: amount,
       createdAt: createdAt,
-      paymentType: paymentType,
+      paymentType: paymentTypeX ?? paymentType,
     );
   }
 

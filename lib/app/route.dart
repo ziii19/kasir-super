@@ -48,16 +48,16 @@ Route<dynamic> router(settings) {
       });
     case PaymentPage.routeName:
       return CupertinoPageRoute(builder: (context) {
-        return const PaymentPage();
+        return PaymentPage(referenceId: settings.arguments as String?);
       });
     case CashPage.routeName:
       return CupertinoPageRoute(builder: (context) {
-        return const CashPage();
+        return CashPage(referenceId: settings.arguments as String?,);
       });
     case SuccessTransactionPage.routeName:
       return CupertinoPageRoute(builder: (context) {
         return SuccessTransactionPage(
-          referenceId: settings.arguments as String,
+          referenceId: settings.arguments as String?,
         );
       });
     case POSQrPage.routeName:

@@ -31,7 +31,7 @@ class _ActionSection extends StatelessWidget {
               Expanded(
                 child: OutlinedButton(
                   onPressed: () {
-                    context.read<CartBloc>().add(InitialCartEvent());
+                    context.read<CartBloc>().add(const InitialCartEvent());
                   },
                   child: const Text('Hapus'),
                 ),

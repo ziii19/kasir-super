@@ -8,7 +8,9 @@ import '../../../transaction/blocs/blocs.dart';
 part 'section/price_section.dart';
 
 class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key, this.referenceId});
+
+  final String? referenceId;
 
   static const routeName = '/pos/payment';
 
@@ -41,7 +43,8 @@ class PaymentPage extends StatelessWidget {
                   icon: AppIcons.money,
                   title: 'Tunai',
                   onTap: () {
-                    Navigator.pushNamed(context, CashPage.routeName);
+                    Navigator.pushNamed(context, CashPage.routeName,
+                        arguments: referenceId);
                   },
                 ),
                 BlocBuilder<CartBloc, CartState>(
@@ -52,6 +55,7 @@ class PaymentPage extends StatelessWidget {
                       onTap: () {
                         context.read<TransactionBloc>().add(
                               CreateQrTransactionEvent(
+                                referenceId: referenceId,
                                 transaction: state.transaction(TypeEnum.unpaid,
                                     paymentType: PaymentType.qris),
                               ),

@@ -64,6 +64,8 @@ class TransactionItemModel extends Equatable {
 
   TransactionItemModel changeId(int id) {
     return TransactionItemModel(
+      
+      qty: qty,
       title: title,
       desc: desc,
       image: image,

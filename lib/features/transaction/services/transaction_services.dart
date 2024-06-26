@@ -32,7 +32,8 @@ class TransactionServices {
             .indexWhere((e) => e.referenceId == element['referenceId']);
 
         if (index < 0) {
-          transactions.add(TransactionModel.fromJson(element));
+          transactions
+              .add(TransactionModel.fromJson(element).copyWith(element));
         } else {
           transactions[index] = transactions[index].copyWith(element);
         }
@@ -52,7 +53,21 @@ class TransactionServices {
     SELECT * FROM transactions INNER JOIN items ON transactions.id = items.transactionId WHERE transactions.referenceId = ?
     ''', [referenceId]);
 
-      return TransactionModel.fromJson(results.first);
+      List<TransactionModel> transactions = [];
+
+      for (var element in results) {
+        final index = transactions
+            .indexWhere((e) => e.referenceId == element['referenceId']);
+
+        if (index < 0) {
+          transactions
+              .add(TransactionModel.fromJson(element).copyWith(element));
+        } else {
+          transactions[index] = transactions[index].copyWith(element);
+        }
+      }
+
+      return transactions.first;
     } catch (e) {
       throw ErrorDescription(e.toString());
     }

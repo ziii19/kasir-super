@@ -50,11 +50,7 @@ class CartState extends Equatable {
   }
 
   num get afterDiscount {
-    if (type == DiscountType.percentage) {
-      return getEstimate - (getEstimate * disc / 100);
-    } else {
-      return getEstimate - disc;
-    }
+    return getEstimate - discount;
   }
 
   num get discount {
@@ -84,7 +80,7 @@ class CartState extends Equatable {
             )
             .toList(),
         discount: discount,
-        payAmount: payAmount ?? getEstimate);
+        payAmount: payAmount ?? 0);
   }
 
   CartState copyWith({

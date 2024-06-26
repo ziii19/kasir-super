@@ -9,11 +9,12 @@ class TransactionEvent extends Equatable {
 
 class CreateQrTransactionEvent extends TransactionEvent {
   final TransactionModel transaction;
+  final String? referenceId;
 
-  const CreateQrTransactionEvent({required this.transaction});
+  const CreateQrTransactionEvent({this.referenceId, required this.transaction});
 
   @override
-  List<Object?> get props => [transaction];
+  List<Object?> get props => [transaction, referenceId];
 }
 
 class GetDetailTransactionEvent extends TransactionEvent {
@@ -39,9 +40,10 @@ class GetTransactionEvent extends TransactionEvent {
 class CreateTransactionEvent extends TransactionEvent {
   final TransactionModel transaction;
   final TypeEnum? type;
+  final String? referenceId;
 
-  const CreateTransactionEvent(this.transaction, {this.type});
+  const CreateTransactionEvent(this.transaction, {this.type, this.referenceId});
 
   @override
-  List<Object?> get props => [transaction, type];
+  List<Object?> get props => [transaction, type, referenceId];
 }

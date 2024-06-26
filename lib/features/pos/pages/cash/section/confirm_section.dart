@@ -3,7 +3,10 @@ part of '../page.dart';
 class _ConfirmSection extends StatelessWidget {
   const _ConfirmSection({
     required this.nominal,
+    this.referenceId,
   });
+
+  final String? referenceId;
 
   final num nominal;
 
@@ -62,6 +65,7 @@ class _ConfirmSection extends StatelessWidget {
                       context
                           .read<TransactionBloc>()
                           .add(CreateTransactionEvent(
+                              referenceId: referenceId,
                               type: TypeEnum.paid,
                               state.transaction(
                                 TypeEnum.paid,

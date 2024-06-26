@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasir_super/core/extensions/date_extension.dart';
+import 'package:kasir_super/core/template/empty_template.dart';
 import 'package:kasir_super/features/transaction/blocs/transaction/transaction_bloc.dart';
 import 'package:kasir_super/features/transaction/models/models.dart';
 import 'package:kasir_super/features/transaction/pages/detail/page.dart';
@@ -27,6 +28,9 @@ class TransactionPage extends StatelessWidget {
           ),
           BlocBuilder<TransactionBloc, TransactionState>(
             builder: (context, state) {
+              if (state.transactions.isEmpty) {
+                return const EmptyTemplate();
+              }
               return Expanded(
                   child: ListView.builder(
                 itemBuilder: (context, index) {

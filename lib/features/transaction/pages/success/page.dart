@@ -14,9 +14,9 @@ part 'section/type_section.dart';
 part 'section/detail_section.dart';
 
 class SuccessTransactionPage extends StatelessWidget {
-  const SuccessTransactionPage({super.key, required this.referenceId});
+  const SuccessTransactionPage({super.key, this.referenceId});
 
-  final String referenceId;
+  final String? referenceId;
 
   static const routeName = 'transaction/success';
 

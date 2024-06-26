@@ -24,11 +24,20 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       try {
         emit(state.copyWith(status: Status.loading));
 
-        final item = await TransactionServices.insert(event.transaction);
+        if (event.referenceId != null) {
+          final item = await TransactionServices.update(state.item!.copyQr(
+            payAmountX: event.transaction.payAmount,
+          ));
 
-        emit(state.copyWith(
-            status: event.type == TypeEnum.paid ? Status.success : Status.apply,
-            item: item));
+          emit(state.copyWith(status: Status.success, item: item));
+        } else {
+          final item = await TransactionServices.insert(event.transaction);
+
+          emit(state.copyWith(
+              status:
+                  event.type == TypeEnum.paid ? Status.success : Status.apply,
+              item: item));
+        }
       } catch (e) {
         emit(state.copyWith(status: Status.failure, error: e.toString()));
       }
@@ -49,14 +58,24 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       try {
         emit(state.copyWith(status: Status.loading));
 
-        final service = await XenditService.createQr(
-            referenceId: event.transaction.referenceId,
-            amount: event.transaction.amount);
+        if (event.referenceId != null) {
+          final item = await TransactionServices.update(state.item!.copyQr(
+            typeX: event.transaction.type,
+            paymentTypeX: event.transaction.paymentType,
+          ));
 
-        final item = await TransactionServices.insert(
-            event.transaction.copyQr(qrIdX: service.$1, qrStringX: service.$2));
+          emit(state.copyWith(status: Status.process, item: item));
 
-        emit(state.copyWith(status: Status.process, item: item));
+        } else {
+          final service = await XenditService.createQr(
+              referenceId: event.transaction.referenceId,
+              amount: event.transaction.amount);
+
+          final item = await TransactionServices.insert(event.transaction
+              .copyQr(qrIdX: service.$1, qrStringX: service.$2));
+
+          emit(state.copyWith(status: Status.process, item: item));
+        }
       } catch (e) {
         emit(state.copyWith(status: Status.failure, error: e.toString()));
       }

@@ -47,7 +47,7 @@ class _ItemSection extends StatelessWidget {
             ),
             Dimens.dp16.height,
             RegularText.semiBold(
-              data.referenceId,
+              '${data.paymentType.valueName} • ${data.referenceId}',
             ),
             Dimens.dp8.height,
             RegularText.semiBold(

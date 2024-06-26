@@ -7,7 +7,14 @@ class CartEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class InitialCartEvent extends CartEvent {}
+class InitialCartEvent extends CartEvent {
+  final TransactionModel? transaction;
+
+  const InitialCartEvent({this.transaction});
+
+  @override
+  List<Object?> get props => [transaction];
+}
 
 class IncrementCartEvent extends CartEvent {
   final ProductModel product;
