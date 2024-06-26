@@ -26,12 +26,18 @@ class _ItemSection extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimens.dp4),
-                    border: Border.all(color: context.theme.primaryColor),
+                    border: Border.all(
+                      color: data.type == TypeEnum.paid
+                          ? context.theme.primaryColor
+                          : context.theme.disabledColor,
+                    ),
                   ),
                   child: RegularText.semiBold(
                     data.type.valueName,
                     style: TextStyle(
-                      color: context.theme.primaryColor,
+                      color: data.type == TypeEnum.paid
+                          ? context.theme.primaryColor
+                          : context.theme.disabledColor,
                       fontSize: Dimens.dp10,
                     ),
                   ),

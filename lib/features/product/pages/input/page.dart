@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasir_super/core/core.dart';
+import 'package:kasir_super/features/home/blocs/blocs.dart';
+import 'package:kasir_super/features/home/home.dart';
 import 'package:kasir_super/features/product/blocs/blocs.dart';
 import 'package:kasir_super/features/product/models/model.dart';
 
 part 'sections/info_section.dart';
 part 'sections/price_section.dart';
 part 'sections/stock_section.dart';
+part 'sections/confirm_section.dart';
 
 class ProductInputPage extends StatefulWidget {
   const ProductInputPage({super.key, this.product});
@@ -33,7 +37,7 @@ class _ProductInputPageState extends State<ProductInputPage> {
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
         if (state.status == Status.apply) {
-          Navigator.pop(context);
+          confirmBtn();
         }
       },
       child: Scaffold(
@@ -79,6 +83,14 @@ class _ProductInputPageState extends State<ProductInputPage> {
           },
         ),
       ),
+    );
+  }
+
+  void confirmBtn() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const _ConfirmSection(),
     );
   }
 }

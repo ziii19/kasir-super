@@ -61,6 +61,8 @@ class _PriceSectionState extends State<_PriceSection> {
                   label: 'Harga Regular',
                   required: true,
                   controller: priceReg,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                 ),
               ),
               Dimens.dp16.width,
@@ -81,7 +83,7 @@ class _PriceSectionState extends State<_PriceSection> {
             label: 'Biaya Per Item',
             required: true,
             hintText: 'Rp 0',
-            // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: TextInputType.number,
           ),
           Row(
