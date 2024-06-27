@@ -1,8 +1,13 @@
 part of '../page.dart';
 
-class _ActionSection extends StatelessWidget {
+class _ActionSection extends StatefulWidget {
   const _ActionSection();
 
+  @override
+  State<_ActionSection> createState() => _ActionSectionState();
+}
+
+class _ActionSectionState extends State<_ActionSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,7 +34,10 @@ class _ActionSection extends StatelessWidget {
                   Dimens.dp16.width,
                   Expanded(
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text('Kirim Struk')),
+                        onPressed: () {
+                          share(state.item!);
+                        },
+                        child: const Text('Kirim Struk')),
                   ),
                 ],
               ),
@@ -48,5 +56,22 @@ class _ActionSection extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void share(TransactionModel transaction) {
+    ScreenshotController()
+        .captureFromWidget(
+      pixelRatio: MediaQuery.of(context).devicePixelRatio,
+      delay: const Duration(milliseconds: 10),
+      ShareBill(data: transaction),
+      context: context,
+      targetSize: Size(
+        370,
+        800 + (transaction.items.length * 50),
+      ),
+    )
+        .then((capturedImage) async {
+      await ShareHelper.shareImage(context, capturedImage, 'contoh');
+    });
   }
 }

@@ -14,13 +14,13 @@ class ContentSheet extends StatelessWidget {
     return AnimatedPadding(
       duration: const Duration(milliseconds: 100),
       padding: MediaQuery.of(context).viewInsets,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -33,10 +33,9 @@ class ContentSheet extends StatelessWidget {
                 ),
               ],
             ),
-            Dimens.dp16.height,
-            child
-          ],
-        ),
+          ),
+          child
+        ],
       ),
     );
   }

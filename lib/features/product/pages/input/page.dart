@@ -11,6 +11,7 @@ part 'sections/info_section.dart';
 part 'sections/price_section.dart';
 part 'sections/stock_section.dart';
 part 'sections/confirm_section.dart';
+part 'sections/unit_section.dart';
 
 class ProductInputPage extends StatefulWidget {
   const ProductInputPage({super.key, this.product});
@@ -91,6 +92,12 @@ class _ProductInputPageState extends State<ProductInputPage> {
       context: context,
       isScrollControlled: true,
       builder: (context) => const _ConfirmSection(),
-    );
+    ).then((value) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        MainPage.routeName,
+        (route) => false,
+      );
+    });
   }
 }

@@ -68,11 +68,23 @@ class _PriceSectionState extends State<_PriceSection> {
               Dimens.dp16.width,
               Expanded(
                 flex: 1,
-                child: RegularTextInput(
-                  hintText: 'Pcs, kg, etc',
-                  label: 'Unit',
-                  controller: unitController,
-                  required: true,
+                child: GestureDetector(
+                  onTap: () async {
+                    final result = await showUnit();
+                    if (result != null) {
+                      setState(() {
+                        unitController.text = result.valueName;
+                      });
+                    }
+                  },
+                  child: RegularTextInput(
+                    suffix: const Icon(Icons.keyboard_arrow_down_rounded),
+                    hintText: 'Pcs, kg, etc',
+                    label: 'Unit',
+                    enabled: false,
+                    controller: unitController,
+                    required: true,
+                  ),
                 ),
               ),
             ],
@@ -124,6 +136,14 @@ class _PriceSectionState extends State<_PriceSection> {
           )
         ],
       ),
+    );
+  }
+
+  Future<UnitType?> showUnit() async {
+    return await showModalBottomSheet<UnitType>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const _UnitSection(),
     );
   }
 }

@@ -1,12 +1,17 @@
 part of '../page.dart';
 
-class _BtnSection extends StatelessWidget {
+class _BtnSection extends StatefulWidget {
   const _BtnSection({
     required this.item,
   });
 
   final TransactionModel item;
 
+  @override
+  State<_BtnSection> createState() => _BtnSectionState();
+}
+
+class _BtnSectionState extends State<_BtnSection> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,14 +20,14 @@ class _BtnSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (item.type != TypeEnum.paid) ...[
+            if (widget.item.type != TypeEnum.paid) ...[
               OutlinedButton(
                   onPressed: () {
                     context.read<CartBloc>().add(
-                          InitialCartEvent(transaction: item),
+                          InitialCartEvent(transaction: widget.item),
                         );
 
-                    if (item.paymentType == PaymentType.qris) {
+                    if (widget.item.paymentType == PaymentType.qris) {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         POSQrPage.routeName,
@@ -30,24 +35,45 @@ class _BtnSection extends StatelessWidget {
                       );
                     } else {
                       Navigator.pushNamed(context, PaymentPage.routeName,
-                          arguments: item.referenceId);
+                          arguments: widget.item.referenceId);
                     }
                   },
                   child: const Text('Bayar')),
               Dimens.dp24.height,
             ],
-            OutlinedButton(onPressed: () {}, child: const Text('Kirim Struk')),
+            OutlinedButton(
+                onPressed: () {
+                  share(widget.item);
+                },
+                child: const Text('Kirim Struk')),
             Dimens.dp24.height,
             ElevatedButton(
                 onPressed: () {
                   context
                       .read<PrinterBloc>()
-                      .add(TransactionPrinterEvent(item));
+                      .add(TransactionPrinterEvent(widget.item));
                 },
                 child: const Text('Cetak Struk')),
           ],
         ),
       ),
     );
+  }
+
+  void share(TransactionModel transaction) {
+    ScreenshotController()
+        .captureFromWidget(
+      pixelRatio: MediaQuery.of(context).devicePixelRatio,
+      delay: const Duration(milliseconds: 10),
+      ShareBill(data: transaction),
+      context: context,
+      targetSize: Size(
+        370,
+        800 + (transaction.items.length * 50),
+      ),
+    )
+        .then((capturedImage) async {
+      await ShareHelper.shareImage(context, capturedImage, 'contoh');
+    });
   }
 }
