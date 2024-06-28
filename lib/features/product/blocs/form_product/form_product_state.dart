@@ -44,6 +44,14 @@ class FormProductState extends Equatable {
   final int? stock;
   final String? sku;
 
+  num get margin {
+    return ((priceRegular ?? 0) - (priceItem ?? 0)) / (priceRegular ?? 0) * 100;
+  }
+
+  num get profit {
+    return (priceRegular ?? 0) - (priceItem ?? 0);
+  }
+
   bool get isValid =>
       name != null &&
       name!.isNotEmpty &&

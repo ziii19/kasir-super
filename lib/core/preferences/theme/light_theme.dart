@@ -138,6 +138,7 @@ class LightTheme {
         borderRadius: BorderRadius.circular(Dimens.dp8),
         borderSide: BorderSide(color: inputColor),
       ),
+      
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(Dimens.dp8),
         borderSide: BorderSide(color: inputColor),

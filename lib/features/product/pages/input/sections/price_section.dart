@@ -78,6 +78,7 @@ class _PriceSectionState extends State<_PriceSection> {
                     }
                   },
                   child: RegularTextInput(
+                    
                     suffix: const Icon(Icons.keyboard_arrow_down_rounded),
                     hintText: 'Pcs, kg, etc',
                     label: 'Unit',
@@ -98,41 +99,46 @@ class _PriceSectionState extends State<_PriceSection> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             keyboardType: TextInputType.number,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RegularText.medium(
-                      'Margin',
-                      style: const TextStyle(fontSize: Dimens.dp12),
+          Dimens.dp8.height,
+          BlocBuilder<FormProductBloc, FormProductState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegularText.medium(
+                          'Margin',
+                          style: const TextStyle(fontSize: Dimens.dp12),
+                        ),
+                        Dimens.dp8.height,
+                        RegularText(
+                          '${state.margin}%',
+                          style: const TextStyle(fontSize: Dimens.dp12),
+                        ),
+                      ],
                     ),
-                    Dimens.dp8.height,
-                    const RegularText(
-                      '-',
-                      style: TextStyle(fontSize: Dimens.dp12),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegularText.medium(
+                          'Profit',
+                          style: const TextStyle(fontSize: Dimens.dp12),
+                        ),
+                        Dimens.dp8.height,
+                        RegularText(
+                          '${state.profit}',
+                          style: const TextStyle(fontSize: Dimens.dp12),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RegularText.medium(
-                      'Margin',
-                      style: const TextStyle(fontSize: Dimens.dp12),
-                    ),
-                    Dimens.dp8.height,
-                    const RegularText(
-                      '-',
-                      style: TextStyle(fontSize: Dimens.dp12),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                ],
+              );
+            },
           )
         ],
       ),

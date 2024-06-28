@@ -15,7 +15,9 @@ class _AccountSection extends StatelessWidget {
         ItemMenuSetting(
           title: 'Informasi Usaha',
           icon: AppIcons.receipt,
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, ProfilePage.routeName);
+          },
         ),
         const Divider(
           height: 0,

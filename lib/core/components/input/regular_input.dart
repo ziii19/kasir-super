@@ -44,6 +44,7 @@ class RegularTextInput extends StatelessWidget {
           Dimens.dp8.height
         ],
         TextFormField(
+          style: TextStyle(color: AppColors.black[800]),
           controller: controller,
           enabled: enabled,
           inputFormatters: inputFormatters,
