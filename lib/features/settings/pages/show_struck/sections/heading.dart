@@ -9,8 +9,8 @@ class _HeadingSection extends StatelessWidget {
       padding: const EdgeInsets.all(Dimens.dp16),
       child: Column(
         children: [
-          const SubtitleText(
-            'Kasir SUPER',
+          SubtitleText(
+            AppConfig.appName,
             textAlign: TextAlign.center,
           ),
           Dimens.dp16.height,

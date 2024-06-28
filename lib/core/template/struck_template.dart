@@ -2,6 +2,7 @@ import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
 import 'package:kasir_super/core/core.dart';
 import 'package:kasir_super/features/settings/services/services.dart';
 
+import '../../app/config.dart';
 import '../../features/transaction/models/models.dart';
 
 class TicketTemplate {
@@ -19,7 +20,7 @@ class TicketTemplate {
     bytes += generator.reset();
 
     bytes += generator.text(
-      user?.name ?? 'Kasir SUPER Group',
+      user?.name ?? '${AppConfig.appName} Group',
       styles: const PosStyles(
         bold: true,
         align: PosAlign.center,
@@ -129,7 +130,7 @@ class TicketTemplate {
       styles: const PosStyles(align: PosAlign.center),
     );
     bytes += generator.text(
-      'Powered by Kasir SUPER',
+      'Powered by ${AppConfig.appName}',
       styles: const PosStyles(align: PosAlign.center),
     );
 

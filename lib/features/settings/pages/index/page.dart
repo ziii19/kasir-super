@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasir_super/features/settings/blocs/blocs.dart';
 import 'package:kasir_super/features/settings/pages/pages.dart';
 
+import '../../../../app/config.dart';
 import '../../../../core/core.dart';
 import '../../components/components.dart';
 

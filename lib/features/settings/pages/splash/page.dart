@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_super/core/core.dart';
 
+import '../../../../app/config.dart';
 import '../../../home/pages/main/main.dart';
 
 class SplashPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
             Dimens.defaultSize.height,
             HeadingText(
-              'kasir SUPER',
+              AppConfig.appName,
               style: TextStyle(
                 color: context.theme.primaryColor,
                 fontSize: Dimens.dp32,

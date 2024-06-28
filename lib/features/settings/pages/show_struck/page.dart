@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_super/app/config.dart';
 import 'package:kasir_super/core/core.dart';
 
 part 'sections/heading.dart';

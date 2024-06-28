@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:kasir_super/app/config.dart';
 import 'package:kasir_super/core/core.dart';
 
 class XenditService {
@@ -14,7 +15,7 @@ class XenditService {
           'Content-Type': 'application/json',
           'api-version': '2022-07-31',
           'Authorization':
-              'Basic ${base64Encode(utf8.encode('xnd_development_3QbjQOEbxbPv78ssf17Keon6VemRCk1IyhtQiKXo2bNNfGfVW6u2vdlh0tv0Sla:'))}'
+              'Basic ${base64Encode(utf8.encode(AppConfig.xenditKey))}'
         },
       );
   }

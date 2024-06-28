@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kasir_super/features/settings/blocs/blocs.dart';
 
+import '../../../../app/config.dart';
 import '../../../../core/core.dart';
 
 part 'section/image_section.dart';
@@ -67,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
             RegularTextInput(
               controller: nameController,
               label: 'Nama Bisnis',
-              hintText: 'Kasir SUPER',
+              hintText: AppConfig.appName,
             ),
             Dimens.dp24.height,
             RegularTextInput(

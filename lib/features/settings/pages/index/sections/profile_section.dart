@@ -34,7 +34,7 @@ class _ProfileSection extends StatelessWidget {
                   children: [
                     RegularText.semiBold(
                         state.user?.name == null || state.user!.name.isEmpty
-                            ? "Kasir SUPER"
+                            ? AppConfig.appName
                             : state.user!.name),
                     Dimens.dp4.height,
                     RegularText(

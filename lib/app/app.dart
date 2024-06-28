@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kasir_super/app/config.dart';
 import 'package:kasir_super/app/route.dart';
 import 'package:kasir_super/core/core.dart';
 import 'package:kasir_super/features/home/blocs/blocs.dart';
@@ -28,7 +29,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(create: (context) => TransactionBloc()),
       ],
       child: MaterialApp(
-        title: 'kasir SUPER',
+        title: AppConfig.appName,
         theme: LightTheme(AppColors.green).theme,
         debugShowCheckedModeBanner: false,
         home: const SplashPage(),
