@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_super/core/core.dart';
+import 'package:kasir_super/features/settings/pages/pages.dart';
 
 import '../../../../app/config.dart';
 import '../../../home/pages/main/main.dart';
@@ -14,13 +15,35 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 3))
-        .then((value) => Navigator.pushNamedAndRemoveUntil(
-              context,
-              MainPage.routeName,
-              (route) => false,
-            ));
+    checkUpdate();
     super.initState();
+  }
+
+  Future<void> checkUpdate() async {
+    final version = await ConfigData.checkUpdate();
+
+    if (version == AppVersionType.upToDate) {
+      mainNavigate();
+    } else {
+      updateNavigate(version);
+    }
+  }
+
+  void mainNavigate() {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      MainPage.routeName,
+      (route) => false,
+    );
+  }
+
+  void updateNavigate(AppVersionType appVersion) {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      UpdatePage.routeName,
+      (route) => false,
+      arguments: appVersion,
+    );
   }
 
   @override

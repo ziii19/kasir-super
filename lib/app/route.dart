@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kasir_super/core/core.dart';
 import 'package:kasir_super/features/pos/pages/pages.dart';
 import 'package:kasir_super/features/pos/pos.dart';
 import 'package:kasir_super/features/product/models/model.dart';
 import 'package:kasir_super/features/transaction/pages/detail/page.dart';
 
-import '../core/components/components.dart';
 import '../features/home/home.dart';
 import '../features/product/pages/pages.dart';
 import '../features/settings/pages/pages.dart';
@@ -15,6 +15,12 @@ Route<dynamic> router(settings) {
     case MainPage.routeName:
       return MaterialPageRoute(builder: (context) {
         return const MainPage();
+      });
+    case UpdatePage.routeName:
+      return MaterialPageRoute(builder: (_) {
+        return UpdatePage(
+          version: settings.arguments as AppVersionType,
+        );
       });
     case ProductInputPage.routeName:
       return MaterialPageRoute(builder: (context) {
@@ -52,7 +58,9 @@ Route<dynamic> router(settings) {
       });
     case CashPage.routeName:
       return CupertinoPageRoute(builder: (context) {
-        return CashPage(referenceId: settings.arguments as String?,);
+        return CashPage(
+          referenceId: settings.arguments as String?,
+        );
       });
     case SuccessTransactionPage.routeName:
       return CupertinoPageRoute(builder: (context) {
